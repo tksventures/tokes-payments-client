@@ -8,7 +8,7 @@ You will need access to a Tokes Payments API server and at least one valid API k
 ```
 npm install tokes-payments-client
 ```
-This will install the package to your current working directory
+This will install the client module to your project.
 
 ### Configuration
 ```js
@@ -25,7 +25,7 @@ const client = TokesPaymentsClient({
 | `apiKey` | _(Optional)_ A default API Key to use on all requests |
 | `serviceKey` | _(Optional)_ Additional key sent with headers (`appkey`) for client signatures |
 
-### Testing
+### Contributing
 When developing extensions to the package, run the following command locally.
 
 ```
@@ -58,9 +58,9 @@ const orderData = {
   currency: 'LTC',
 };
 
-client.payment(orderData).then(console.log);
+client.payment(orderData).then(debug);
 
-/*
+/*** Output:
 {
   success: true,
   order: {
