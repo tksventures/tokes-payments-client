@@ -1,0 +1,41 @@
+{
+  "name": "tokes-payments-client",
+  "version": "0.0.1",
+  "description": "Communicate with the Tokes Payments API",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tksventures/tokes-payments-client"
+  },
+  "main": "index.js",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint --ext .js ./",
+    "test": "jest --verbose --silent --detectOpenHandles --forceExit",
+    "full-test": "npm run lint && npm run test"
+  },
+  "author": "",
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "debug": "^3.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-transform-regenerator": "^7.3.4",
+    "@babel/plugin-transform-runtime": "^7.3.4",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/register": "^7.0.0",
+    "@babel/runtime": "^7.3.4",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "jest": "^24.3.1",
+    "jest-cli": "^24.3.1",
+    "json-loader": "^0.5.7"
+  }
+}
