@@ -124,6 +124,10 @@ function Payments(config) {
 
       return userAddresess && userAddresess.length;
     },
+
+    kycContactsGet: accesskey => get(`/api/kyc/contacts`, accesskey),
+
+    kycContactsPost: (contactData, accesskey) => post('/api/kyc/contacts', contactData, accessKey),
   };
 
   return PaymentsAPI;
