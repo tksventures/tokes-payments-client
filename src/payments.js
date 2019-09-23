@@ -132,6 +132,8 @@ function Payments(config) {
     kycContactsPost: (contactData, accesskey) => post('/api/kyc/contacts', contactData, accesskey),
 
     kycAccountsGet: accesskey => get('/api/kyc/accounts', accesskey),
+
+    kycAccountsPost: (accountData, accesskey) => post('/api/kyc/accounts', accountData, accesskey),
   };
 
   return PaymentsAPI;
