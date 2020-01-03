@@ -4,32 +4,32 @@ function Payments(config) {
   const { host, apiKey, serviceKey } = config;
 
   if (!host) throw new Error('Payments host definition is required');
+  if (!apiKey) throw new Error('The API key is required');
 
   async function get(path, accesskey = apiKey) {
-    try {
-      const { data } = await axios.get(`${host}${path}`, {
-        headers: { accesskey, appkey: serviceKey || 'unsigned' },
-      });
-      return data;
-    } catch (error) {
-      throw new Error(error);
-    }
+    const { data } = await axios.get(`${host}${path}`, {
+      headers: { accesskey, appkey: serviceKey || 'unsigned' },
+    });
+    return data;
   }
 
   async function post(path, postData, accesskey = apiKey) {
-    try {
-      const { data } = await axios.post(`${host}${path}`, postData, {
-        headers: { accesskey, appkey: serviceKey || 'unsigned' },
-      });
-      return data;
-    } catch (error) {
-      throw new Error(error);
-    }
+    const { data } = await axios.post(`${host}${path}`, postData, {
+      headers: { accesskey, appkey: serviceKey || 'unsigned' },
+    });
+    return data;
   }
 
   async function put(path, putData, accesskey = apiKey) {
+    const { data } = await axios.put(`${host}${path}`, putData, {
+      headers: { accesskey, appkey: serviceKey || 'unsigned' },
+    });
+    return data;
+  }
+
+  async function patch(path, patchData, accesskey = apiKey) {
     try {
-      const { data } = await axios.put(`${host}${path}`, putData, {
+      const { data } = await axios.patch(`${host}${path}`, patchData, {
         headers: { accesskey, appkey: serviceKey || 'unsigned' },
       });
       return data;
@@ -39,14 +39,17 @@ function Payments(config) {
   }
 
   async function del(path, accesskey = apiKey) {
-    try {
-      const { data } = await axios.delete(`${host}${path}`, {
-        headers: { accesskey, appkey: serviceKey || 'unsigned' },
-      });
-      return data;
-    } catch (error) {
-      throw new Error(error);
-    }
+    const { data } = await axios.delete(`${host}${path}`, {
+      headers: { accesskey, appkey: serviceKey || 'unsigned' },
+    });
+    return data;
+  }
+
+  async function delNoData(path, accesskey = apiKey) {
+    const response = await axios.delete(`${host}${path}`, {
+      headers: { accesskey, appkey: serviceKey || 'unsigned' },
+    });
+    return response;
   }
 
   const PaymentsAPI = {
@@ -90,6 +93,8 @@ function Payments(config) {
 
     accountData: accesskey => get('/api/account', accesskey),
 
+    questionnaireData: accesskey => get('/api/questionnaires', accesskey),
+
     accountLookup: (table, id, accesskey) => get(`/api/account/${table}/${id}`, accesskey),
 
     accountUpdate: (table, id, data, accesskey) => put(`/api/account/${table}/${id}`, data, accesskey),
@@ -124,6 +129,25 @@ function Payments(config) {
 
       return userAddresess && userAddresess.length;
     },
+
+    kycContactsGet: accesskey => get('/api/kyc/contacts', accesskey),
+
+    kycContactsGetAll: accesskey => get('/api/kyc/contacts/related', accesskey),
+
+    kycContactsGetOne: (id, accesskey) => get(`/api/kyc/contacts/${id}`, accesskey),
+
+    kycContactsDelete: (id, accesskey) => delNoData(`/api/kyc/contacts/${id}`, accesskey),
+
+    kycContactsPost: (contactData, accesskey) => post('/api/kyc/contacts', contactData, accesskey),
+
+    kycContactsPatch: (id, contactData, accesskey) => patch(`/api/kyc/contacts/${id}`, contactData, accesskey),
+
+    kycAccountGet: accesskey => get('/api/kyc/accounts', accesskey),
+
+    kycQuestionnaireGet: accesskey => get('/api/kyc/questionnaire', accesskey),
+
+    kycAccountsPost: (accountData, accesskey) => post('/api/kyc/accounts', accountData, accesskey),
+
   };
 
   return PaymentsAPI;
