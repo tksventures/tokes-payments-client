@@ -1,6 +1,6 @@
 {
   "name": "tokes-payments-client",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Communicate with the Tokes Payments API",
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
   },
   "author": "",
   "license": "ISC",
-  "private": true,
+  "private": false,
   "dependencies": {
     "axios": "^0.19.0",
     "debug": "^3.1.0"
