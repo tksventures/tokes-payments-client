@@ -1,4 +1,4 @@
-import axios from 'axios';
+const axios = require('axios');
 
 function Payments(config) {
   const { host, apiKey, serviceKey } = config;
