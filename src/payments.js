@@ -182,4 +182,4 @@ function Payments(config) {
   return PaymentsAPI;
 }
 
-export default Payments;
+module.exports = Payments;
