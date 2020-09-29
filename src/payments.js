@@ -4,7 +4,6 @@ function Payments(config) {
   const { host, apiKey, serviceKey } = config;
 
   if (!host) throw new Error('Payments host definition is required');
-  if (!apiKey) throw new Error('The API key is required');
 
   async function get(path, accesskey = apiKey) {
     const { data } = await axios.get(`${host}${path}`, {
