@@ -88,7 +88,9 @@ function Payments(config) {
 
     deleteWithdrawalAddress: (currency, accesskey) => del(`/api/merchant/address/${currency}`, accesskey),
 
-    orderHistory: (page, sort, accesskey) => get(`/api/merchant/orders?page=${page}&sort=${sort}`, accesskey),
+    orderHistory: (page, sort, limit, accesskey) => get(`/api/merchant/orders?page=${page}&sort=${sort}&limit=${limit}`, accesskey),
+
+    paymentHistory: (page, sort, limit, accesskey) => get(`/api/merchant/payments?page=${page}&sort=${sort}&limit=${limit}`, accesskey),
 
     salesRecords: (days, accesskey) => get(`/api/merchant/records?days=${days}`, accesskey),
 
